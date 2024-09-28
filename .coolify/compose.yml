@@ -19,7 +19,7 @@ services:
 
   pokkne-api:
     build:
-      context: ../backend
+      context: ./backend
       dockerfile: ../.coolify//Dockerfile.api
     depends_on:
       pokkne-db:
@@ -30,7 +30,7 @@ services:
 
   pokkne-app:
     build:
-      context: ../frontend
+      context: ./frontend
       dockerfile: ../.coolify/Dockerfile.app
     restart: always
     ports:
