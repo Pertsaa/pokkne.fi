@@ -25,12 +25,12 @@ export class MessageStore {
 
 	async createMessage(message: Message) {
 		this._messages.push(message);
-		localStorage.setItem('messages', JSON.stringify(this._messages));
+		localStorage.setItem('messages', JSON.stringify(this._messages.slice(0, 100)));
 	}
 
 	async replaceMessage(message: Message) {
 		this._messages = this._messages.map((m) => (m.id === message.id ? message : m));
-		localStorage.setItem('messages', JSON.stringify(this._messages));
+		localStorage.setItem('messages', JSON.stringify(this._messages.slice(0, 100)));
 	}
 
 	async clearMessages() {
