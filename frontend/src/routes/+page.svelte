@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { browser } from '$app/environment';
 	import ChatBubble from '$lib/components/ChatBubble.svelte';
 	import Icon from '$lib/components/Icon.svelte';
 	import LoadingDots from '$lib/components/LoadingDots.svelte';
@@ -13,7 +14,9 @@
 	let chat: HTMLDivElement | null = $state(null);
 
 	$effect(() => {
-		messageStore.loadMessages();
+		if (browser) {
+			messageStore.loadMessages();
+		}
 	});
 
 	$effect(() => {

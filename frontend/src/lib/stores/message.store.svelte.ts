@@ -8,10 +8,6 @@ type Message = {
 export class MessageStore {
 	_messages = $state<Message[]>([]);
 
-	constructor() {
-		this.loadMessages();
-	}
-
 	get messages() {
 		return this._messages;
 	}
@@ -57,7 +53,7 @@ export class MessageStore {
 				message: '...',
 				loading: true
 			});
-			const res = await fetch('https://api.pokkne.fi/v1/chat', {
+			const res = await fetch('http://localhost:8080/v1/chat', {
 				method: 'POST',
 				body: JSON.stringify({ prompt: message, mode })
 			});
