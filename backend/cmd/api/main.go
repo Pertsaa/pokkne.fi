@@ -14,7 +14,7 @@ import (
 func main() {
 	ctx := context.Background()
 
-	pool, err := pgxpool.New(ctx, "host=localhost port=5432 user=postgresdev password=postgresdev dbname=postgresdev sslmode=disable")
+	pool, err := pgxpool.New(ctx, "host=pokkne-db port=5432 user=postgresdev password=postgresdev dbname=postgresdev sslmode=disable")
 	if err != nil {
 		log.Fatal("unable to create connection pool: %w", err)
 	}
