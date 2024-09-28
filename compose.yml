@@ -1,0 +1,16 @@
+services:
+  pokkne-db:
+    image: postgres:17-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgresdev
+      - POSTGRES_DB=postgresdev
+      - POSTGRES_PASSWORD=postgresdev
+    ports:
+      - "5432:5432"
+    volumes:
+      - db:/var/lib/postgresql/data
+
+volumes:
+  db:
+    driver: local
