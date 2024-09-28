@@ -1,0 +1,41 @@
+services:
+  pokkne-db:
+    image: postgres:17-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgresdev
+      - POSTGRES_DB=postgresdev
+      - POSTGRES_PASSWORD=postgresdev
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-d", "postgresdev"]
+      interval: 30s
+      timeout: 60s
+      retries: 5
+      start_period: 80s
+    ports:
+      - "5432:5432"
+    volumes:
+      - db:/var/lib/postgresql/data
+
+  pokkne-api:
+    build:
+      context: ../backend
+      dockerfile: ../.coolify//Dockerfile.api
+    depends_on:
+      pokkne-db:
+        condition: service_healthy
+    restart: always
+    ports:
+      - "8080:8080"
+
+  pokkne-app:
+    build:
+      context: ../frontend
+      dockerfile: ../.coolify/Dockerfile.app
+    restart: always
+    ports:
+      - "3000:3000"
+
+volumes:
+  db:
+    driver: local
