@@ -25,13 +25,13 @@ func main() {
 	h := handler.NewAPIHandler(ctx, pool)
 
 	// Words
-	r.HandleFunc("POST /api/v1/sentences", handler.Make(h.SentenceCreateHandler))
-	r.HandleFunc("POST /api/v1/sentences/batch", handler.Make(h.SentenceBatchCreateHandler))
-	r.HandleFunc("GET /api/v1/sentences", handler.Make(h.SentenceListHandler))
-	r.HandleFunc("POST /api/v1/seed", handler.Make(h.SeedHandler))
+	r.HandleFunc("POST /v1/sentences", handler.Make(h.SentenceCreateHandler))
+	r.HandleFunc("POST /v1/sentences/batch", handler.Make(h.SentenceBatchCreateHandler))
+	r.HandleFunc("GET /v1/sentences", handler.Make(h.SentenceListHandler))
+	r.HandleFunc("POST /v1/seed", handler.Make(h.SeedHandler))
 
 	// Generate
-	r.HandleFunc("POST /api/v1/chat", handler.Make(h.ChatHandler))
+	r.HandleFunc("POST /v1/chat", handler.Make(h.ChatHandler))
 
 	stack := middleware.CreateStack(
 		middleware.Log,
