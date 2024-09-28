@@ -69,7 +69,9 @@ func (h *APIHandler) ChatHandler(w http.ResponseWriter, r *http.Request) error {
 	}
 
 	response = strings.TrimSpace(response)
-	response = strings.ToUpper(response[:1]) + response[1:]
+	if len(response) > 0 {
+		response = strings.ToUpper(response[:1]) + response[1:]
+	}
 
 	return writeJSON(w, http.StatusOK, ChatResponse{Message: response})
 }
