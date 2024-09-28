@@ -8,6 +8,7 @@ import (
 
 	"github.com/Pertsaa/pokkne/internal/handler"
 	"github.com/Pertsaa/pokkne/internal/middleware"
+	"github.com/Pertsaa/pokkne/internal/sql"
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
@@ -19,6 +20,8 @@ func main() {
 		log.Fatal("unable to create connection pool: %w", err)
 	}
 	defer pool.Close()
+
+	sql.MustMigrate(pool)
 
 	r := http.NewServeMux()
 
